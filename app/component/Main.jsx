@@ -14,7 +14,7 @@ export const Main = ({list,setList}) => {
                    </div>
                 </div>
                 <div className="w-[439px] h-[479px] my-10  bg-[#222124]">
-                    <Aside setList={setList} />
+                    <Aside setList={setList}  list={list}/>
                 </div>
             </div>
         </>

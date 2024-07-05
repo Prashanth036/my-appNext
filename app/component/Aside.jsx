@@ -2,7 +2,7 @@ import { useState } from "react";
 import lock from "../assets/lock.png"
 import Image from "next/image";
 
-export const Aside=({setList})=>{
+export const Aside=({setList,list})=>{
     const [bool,setBool]=useState(false);
     const [id,setId]=useState(0)
     const courseList=[
@@ -46,6 +46,9 @@ export const Aside=({setList})=>{
 
     ]
     
+    if(list.title===""){
+        return    setList({title:"01. Course1",topic:"Topic 1"})
+        }
     
 
     return(
@@ -56,11 +59,14 @@ export const Aside=({setList})=>{
                 courseList.map((e,i)=>{
              return <>
              <li key={i}>
-             <button onClick={()=>(setBool(!bool),setId(i))} className="flex">
-                
+             <button onClick={()=>{
+               return setBool(!bool),setId(i)
+
+             }} className="flex">
                     {i>2 && <Image src={lock} width="2px" heigh="1px" className="w-[10px] my-1 mx-2"/>}
                       {e.title}
                 </button></li>
+
              {i===id &&
              <ul className={(bool&&i<3)?"mx-14":"hidden"}>
                 <li>
