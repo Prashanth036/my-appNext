@@ -1,41 +1,43 @@
-import { useState } from "react"
+import { useState } from "react";
+import lock from "../assets/lock.png"
+import Image from "next/image";
 
 export const Aside=({setList})=>{
     const [bool,setBool]=useState(false);
     const courseList=[
        { 
-        title:"Course 1",
+        title:"01. Course 1",
         course1:'Topic 1',
         course2:'Topic 2 ',
         course3:'Topic 3'
     },
     { 
-        title:"Course 2",
+        title:"02. Course 2",
         course1:'Topic 1',
         course2:'Topic 2 ',
         course3:'Topic 3'
     },{ 
-        title:"Course 3",
+        title:"03. Course 3",
         course1:'Topic 1',
         course2:'Topic 2 ',
         course3:'Topic 3'
     },{ 
-        title:"Course 4",
+        title:"04. Course 4",
         course1:'Topic 1',
         course2:'Topic 2 ',
         course3:'Topic 3'
     },{ 
-        title:"Course 5",
+        title:"05. Course 5",
         course1:'Topic 1',
         course2:'Topic 2 ',
         course3:'Topic 3'
     },{ 
-        title:"Course 6",
+        title:"06. Course 6",
         course1:'Topic 1',
         course2:'Topic 2 ',
         course3:'Topic 3'
     },{ 
-        title:"Course 7",
+        title:"07. Course 7",
         course1:'Topic 1',
         course2:'Topic 2 ',
         course3:'Topic 3'
@@ -47,21 +49,23 @@ export const Aside=({setList})=>{
 
     return(
         <>
-        <div className="bg-[#222124]"> 
+        <div className="bg-[#222124] m-6"> 
             <ul>
             {
                 courseList.map((e,i)=>{
              return <>
              <li key={i}>
-             <button onClick={()=>setBool(!bool)}>
-                {e.title}
+             <button onClick={()=>setBool(!bool)} className="flex">
+                
+                    {i>2 && <Image src={lock} width="2px" heigh="1px" className="w-[10px] my-1 mx-2"/>}
+                      {e.title}
                 </button></li>
              
-             <ul className={bool?"":"hidden"}>
+             <ul className={(bool&&i<3)?"mx-14":"hidden"}>
                 <li>
                   <button onClick={()=>setList({title:e.title,topic:e.course1})}>  {e.course1}</button><br/>
-                  <button onClick={()=>setList({title:e.title,topic:e.course1})}> {e.course2}</button><br/>
-                   <button onClick={()=>setList({title:e.title,topic:e.course1})}> {e.course3}</button><br/>
+                  <button onClick={()=>setList({title:e.title,topic:e.course2})}> {e.course2}</button><br/>
+                   <button onClick={()=>setList({title:e.title,topic:e.course3})}> {e.course3}</button><br/>
                 </li>
                 </ul>
                 
