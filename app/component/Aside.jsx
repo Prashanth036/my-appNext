@@ -4,6 +4,7 @@ import Image from "next/image";
 
 export const Aside=({setList})=>{
     const [bool,setBool]=useState(false);
+    const [id,setId]=useState(0)
     const courseList=[
        { 
         title:"01. Course 1",
@@ -55,12 +56,12 @@ export const Aside=({setList})=>{
                 courseList.map((e,i)=>{
              return <>
              <li key={i}>
-             <button onClick={()=>setBool(!bool)} className="flex">
+             <button onClick={()=>(setBool(!bool),setId(i))} className="flex">
                 
                     {i>2 && <Image src={lock} width="2px" heigh="1px" className="w-[10px] my-1 mx-2"/>}
                       {e.title}
                 </button></li>
-             
+             {i===id &&
              <ul className={(bool&&i<3)?"mx-14":"hidden"}>
                 <li>
                   <button onClick={()=>setList({title:e.title,topic:e.course1})}>  {e.course1}</button><br/>
@@ -68,7 +69,7 @@ export const Aside=({setList})=>{
                    <button onClick={()=>setList({title:e.title,topic:e.course3})}> {e.course3}</button><br/>
                 </li>
                 </ul>
-                
+                }
                 </>
                 })
             }
